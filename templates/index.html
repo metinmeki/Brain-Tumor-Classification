@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Brain Tumor Classifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🧠 Brain Tumor Classifier</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="image" accept="image/*" required>
+            <button type="submit">Upload & Predict</button>
+        </form>
+
+        {% if filename %}
+        <div class="result">
+            <img src="{{ url_for('static', filename='uploads/' + filename) }}" alt="Uploaded MRI">
+            <p><strong>Prediction:</strong> {{ result }}</p>
+            <p><strong>Confidence:</strong> {{ '%.2f'|format(confidence * 100) }}%</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
